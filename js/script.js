@@ -9,7 +9,6 @@ const terms = document.getElementById('terms');
 
 form.addEventListener('submit', e => {
     e.preventDefault();
-    console.log("Achived here");
     checkInputs();
 });
 
@@ -26,7 +25,7 @@ function checkInputs() {
     //Checks for login
     if(usernameValue === '') {
         setErrorFor(username, 'Username cannot be blank');
-    } if (usernameValue.length > 30) {
+    } else if (usernameValue.length > 30) {
         setErrorFor(username, 'Username must be no more than 30 characters');
     } else {
         console.log(username.value.toLowerCase());
@@ -51,7 +50,7 @@ function checkInputs() {
     }
     
     if(password2Value === '') {
-        setErrorFor(password2, 'Password2 cannot be blank');
+        setErrorFor(password2, 'Retype your password');
     } else if(passwordValue !== password2Value) {
         setErrorFor(password2, 'Passwords does not match');
     } else{
@@ -59,7 +58,7 @@ function checkInputs() {
     }
 
     if(newsletterValue) {
-        alert("You have to accept newsletter");
+        alert("You have accepted newsletter, be aware of spam box");
     }
     else {
         setSuccessFor(newsletter);
@@ -75,18 +74,18 @@ function checkInputs() {
 
 function setErrorFor(input, message) {
     const formControl = input.parentElement;
-    const small = formControl.querySelector('small');
+    const errorMessage = formControl.querySelector('p');
     formControl.className = 'textfield error';
-    small.innerText = message;
+    errorMessage.innerText = message;
 }
 
 function setSuccessFor(input) {
     const formControl = input.parentElement;
     formControl.className = 'textfield';
-    const small = formControl.querySelector('small');
-    small.innerText = "";
+    const errorMessage = formControl.querySelector('p');
+    errorMessage.innerText = "";
 }
-    
+//Determine if email is valid    
 function isEmail(email) {
     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
 }
