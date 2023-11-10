@@ -24,35 +24,35 @@ function checkInputs() {
     
     //Checks for login
     if(usernameValue === '') {
-        setErrorFor(username, 'Username cannot be blank');
+        setErrorFor(username, 'X Username cannot be blank');
     } else if (usernameValue.length > 30) {
-        setErrorFor(username, 'Username must be no more than 30 characters');
+        setErrorFor(username, 'X Username must be no more than 30 characters');
     } else {
         console.log(username.value.toLowerCase());
         setSuccessFor(username);
     }
     
     if(emailValue === '') {
-        setErrorFor(email, 'Email cannot be blank');
+        setErrorFor(email, 'X Email cannot be blank');
     } else if (!isEmail(emailValue)) {
-        setErrorFor(email, 'Not a valid email');
+        setErrorFor(email, 'X Not a valid email');
     } else {
         setSuccessFor(email);
     }
     
     //Checks for password
     if(passwordValue === '') {
-        setErrorFor(password, 'Password cannot be blank');
+        setErrorFor(password, 'X Password cannot be blank');
     } if (passwordValue.length < 6) {
-        setErrorFor(password, 'Password must be at least 6 characters');
+        setErrorFor(password, 'X Password must be at least 6 characters');
     } else {
         setSuccessFor(password);
     }
     
     if(password2Value === '') {
-        setErrorFor(password2, 'Retype your password');
+        setErrorFor(password2, 'X Retype your password');
     } else if(passwordValue !== password2Value) {
-        setErrorFor(password2, 'Passwords does not match');
+        setErrorFor(password2, 'X Passwords does not match');
     } else{
         setSuccessFor(password2);
     }
@@ -65,7 +65,7 @@ function checkInputs() {
     }
 
     if(!termsValue) {
-        setErrorFor(terms, 'You must accept terms and conditions');
+        setErrorFor(terms, 'X You must accept terms and conditions');
     }
     else {
         setSuccessFor(terms);
@@ -77,10 +77,14 @@ function setErrorFor(input, message) {
     const errorMessage = formControl.querySelector('p');
     formControl.className = 'textfield error';
     errorMessage.innerText = message;
+    const inputControl = input;
+    const inputError = inputControl.querySelector('input');
+    inputControl.className = 'inputError';
 }
 
 function setSuccessFor(input) {
     const formControl = input.parentElement;
+    input.style.borderColor = "#00ff00";
     formControl.className = 'textfield';
     const errorMessage = formControl.querySelector('p');
     errorMessage.innerText = "";
